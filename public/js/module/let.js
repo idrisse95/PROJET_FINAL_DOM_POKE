@@ -10,7 +10,9 @@ export let img2 = document.getElementById('perso2img')
 export let att1 = document.getElementById('att1')
 export let att2 = document.getElementById('att2')
 export let att3 = document.getElementById('att3')
+console.log(att3.textContent);
 export let att4 = document.getElementById('att4')
+console.log(att4.textContent);
 
 export let hp1 = document.querySelector('.prog')
 export let hp2 = document.querySelector('.prog2')

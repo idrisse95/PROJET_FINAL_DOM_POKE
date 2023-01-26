@@ -15,7 +15,11 @@ import {
     ouverture,
     acceuil,
     jeux,
-    containAttaque,img1,img2, att3, att4
+    containAttaque,
+    img1,
+    img2,
+    att3,
+    att4,
 } from "../js/module/let.js";
 
 import {
@@ -24,82 +28,24 @@ import {
     pointPerso
 } from "../js/module/fonction.js";
 
-// let tab = [30, 45, 25, 15]
-// let rand=tab[Math.floor(Math.random() * tab.length)]
-
-// console.log(rand);
-
-let tab = [
-    {nom:"dd",point:20},
-    {nom:"aa",point:30}
-
-]
-
-
-let rand = tab[Math.floor(Math.random() * tab.length)]
-
-console.log(rand);
 
 
 ouverture.addEventListener("click", () => {
-    // document.getElementById('ouverture').play()
+    document.getElementById('ouverture').play()
     jeux.classList.add("vien");
 })
 
 export let clicker = false;
 
 
+
+export let oui = 0
 att1.addEventListener('click', () => {
+    oui++
+    console.log(oui);
+    imgPerso.style = 'transform:translate(470px,-150px)'
     clicker = true;
     perso1.attaque(ennemi);
-
-    hp2.setAttribute('style', 'width:' + ennemi.hp + '%');
-
-
-    pointEnnemi()
-    attaqueEnnemi()
-
-  
-
-
-
-})
-
-att2.addEventListener('click', () => {
-    clicker = true;
-    perso1.attaque2(ennemi)
-
-    hp2.setAttribute('style', 'width:' + ennemi.hp + '%');
-
-    pointEnnemi()
-    attaqueEnnemi()
-
-
-
-})
-
-att3.addEventListener('click', () => {
-    clicker = true;
-    perso1.attaque4(ennemi);
-
-    hp2.setAttribute('style', 'width:' + ennemi.hp + '%');
-
-
-    pointEnnemi()
-    attaqueEnnemi()
-
-
-
-
-})
-
-
-
-att4.addEventListener('click', () => {
-
-    clicker = true;
-
-    perso1.attaque4(ennemi)
 
     hp2.setAttribute('style', 'width:' + ennemi.hp + '%');
 
@@ -109,19 +55,101 @@ att4.addEventListener('click', () => {
 
 
 
+
+
+
+})
+
+att2.addEventListener('click', () => {
+    oui++
+    imgPerso.style = 'transform:translate(470px,-150px)'
+    clicker = true;
+    perso1.attaque2(ennemi)
+
+    hp2.setAttribute('style', 'width:' + ennemi.hp + '%');
+
+
+    pointPerso()
+    pointEnnemi()
+    attaqueEnnemi()
+
+
+
+})
+
+att3.addEventListener('click', () => {
+    oui++
+    imgPerso.style = 'transform:translate(470px,-150px)'
+    clicker = true;
+    perso1.attaque3(ennemi);
+
+    hp2.setAttribute('style', 'width:' + ennemi.hp + '%');
+
+
+    pointPerso()
+    pointEnnemi()
+    attaqueEnnemi()
+
+
+
+
+})
+
+console.log(oui);
+att4.addEventListener('click', () => {
+
+    if (oui >= 3) {
+        bulle.textContent = "TU AS ACTIVER TON ATTAQUE SPECIAL PROFITE EN POUR EN FINIR"
+
+        imgPerso.style = 'transform:translate(470px,-150px)'
+
+        clicker = true;
+        perso1.attaque4(ennemi)
+        hp2.setAttribute('style', 'width:' + ennemi.hp + '%');
+
+
+
+        pointPerso()
+
+        pointEnnemi()
+        attaqueEnnemi()
+
+
+    } else {
+        bulle.textContent = "Fait au minimum 3 attaques pour debloquer celle-ci"
+        imgPerso.style = 'transform:rotateZ(360deg)'
+    }
+
+
+
+
+
+
+
 })
 
 
-
-img1.addEventListener('click',()=>{
-    imgPerso.setAttribute('src','./public/img/perso2.png')
+export let clickerImg1 = false
+img1.addEventListener('click', () => {
+    clickerImg1 = true;
+    imgPerso.setAttribute('src', './public/img/perso2.png')
     att1.textContent = "Attaque Eau"
     att2.textContent = "Eau eclair"
     att3.textContent = "Flaque Puissanttt"
     att4.textContent = "Voltali"
+
+
+    let butt = document.querySelectorAll('#containAttaque button')
+    console.log(butt);
+    butt.forEach(element => {
+        element.addEventListener('click', () => {
+            butt.style = "color:blue;"
+        })
+    });
+
 })
 
 
-img2.addEventListener('click',()=>{
-    imgPerso.setAttribute('src','./public/img/Sprite_720_Déchaîné_dos_ROSA.png')
+img2.addEventListener('click', () => {
+    imgPerso.setAttribute('src', './public/img/Sprite_720_Déchaîné_dos_ROSA.png')
 })

@@ -3,7 +3,8 @@ import {
     ennemi
 } from "./instance.js";
 import {
-    clicker
+    clicker,
+    clickerImg1
 } from "../main.js";
 import {
     imgEnnemi,
@@ -13,7 +14,8 @@ import {
     vie1,
     vie2,
     containAttaque,
-    bulle
+    bulle,
+    att2
 } from "./let.js";
 import {
     perso
@@ -29,18 +31,33 @@ export function mort() {
 }
 export function pointEnnemi() {
     if (ennemi.hp <= 0) {
-        imgEnnemi.style.display = "none";
+        imgEnnemi.style.display = "none"
+        // imgPerso.style = ('width:400px')
+        // imgPerso.classList.add('ggg')
+
+
+        if (clickerImg1 == true) {
+            imgPerso.setAttribute('src', './public/img/perso2A.png')
+            imgPerso.style = ('width:400px')
+            imgPerso.classList.add('ggg')
+        } else {
+            imgPerso.setAttribute('src', './public/img/perso1.png')
+
+            imgPerso.style = ('width:400px')
+            imgPerso.classList.add('ggg')
+        }
+
         containAttaque.style.display = 'none'
         vie2.innerHTML = '<div class="gg">Tu as GG</div>'
         bulle.textContent = `${ennemi.nom} es mort`
     }
 
-    if (ennemi.hp < 60) {
+    if (ennemi.hp < 50) {
         hp2.style.backgroundColor = "pink";
         imgEnnemi.setAttribute("src", "./public/img/ennemiVnr.png")
     }
 
-    if (ennemi.hp < 20) {
+    if (ennemi.hp < 25) {
         hp2.style.backgroundColor = "red";
 
     }
@@ -50,18 +67,21 @@ export function pointEnnemi() {
 
 export function pointPerso() {
     if (perso1.hp <= 0) {
+        imgEnnemi.classList.add('ggg')
+
+        imgEnnemi.style = ('width:400px')
         imgPerso.style.display = "none";
         vie1.innerHTML = '<div class="gg">Tu as Perdu</div>'
         bulle.textContent = `${ennemi.nom} es mort`
 
     }
 
-    if (perso1.hp < 60) {
+    if (perso1.hp < 50) {
         hp1.style.backgroundColor = "pink";
 
     }
 
-    if (perso1.hp < 20) {
+    if (perso1.hp < 25) {
         hp1.style.backgroundColor = "red";
 
     }
@@ -73,18 +93,7 @@ export function pointPerso() {
 
 
 export let attE = false
-export function test() {
-    if (attE == false) {
-        containAttaque.style.display = "block";
-    } else {
 
-        containAttaque.style.display = "none";
-        console.log("test");
-
-    }
-
-
-}
 
 
 export function attaqueEnnemi() {
@@ -92,14 +101,19 @@ export function attaqueEnnemi() {
     if (ennemi.hp > 0) {
         if (clicker == true) {
             ennemi.attaqueEnnemi(perso1)
-            console.log("c ft");
-            
-        }
-        
-    } else {
-         
-        alert(`${ennemi.nom} est mort`)
-    }
+            att1.style = ('pointer-events:none')
+            att2.style = ('pointer-events:none')
+            att3.style = ('pointer-events:none')
+            att4.style = ('pointer-events:none')
 
+            console.log("c ft");
+
+        }
+
+    } else {
+
+
+
+    }
     pointPerso()
 }
